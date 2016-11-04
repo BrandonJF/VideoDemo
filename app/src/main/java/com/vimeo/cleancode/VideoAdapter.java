@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.vimeo.boguscode.R;
+
 import org.json.JSONObject;
 
 import java.io.InputStream;

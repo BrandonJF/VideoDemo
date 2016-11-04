@@ -1,18 +1,15 @@
-package android.example.com.boguscode;
+package com.vimeo.cleancode.views;
 
+import android.example.com.boguscode.VideoAdapter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
+import com.vimeo.boguscode.R;
+
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,31 +36,31 @@ public class MainActivity extends AppCompatActivity {
             String token = "bearer b8e31bd89ba1ee093dc6ab0f863db1bd";
             ArrayList<JSONObject> videos = new ArrayList<>();
 
-            StringBuilder builder = new StringBuilder();
-            HttpClient client = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
-            httpGet.addHeader("Authorization", token);
-            try {
-                HttpResponse response = client.execute(httpGet);
-                HttpEntity entity = response.getEntity();
-                InputStream content = entity.getContent();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    builder.append(line);
-                }
-                JSONObject object = new JSONObject(builder.toString());
-                JSONArray data = object.getJSONArray("data");
-                for (int i = 0; i < data.length(); i++) {
-                    videos.add(data.getJSONObject(i));
-                }
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+//            StringBuilder builder = new StringBuilder();
+//            HttpClient client = new DefaultHttpClient();
+//            HttpGet httpGet = new HttpGet(url);
+//            httpGet.addHeader("Authorization", token);
+//            try {
+//                HttpResponse response = client.execute(httpGet);
+//                HttpEntity entity = response.getEntity();
+//                InputStream content = entity.getContent();
+//                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+//                String line;
+//                while ((line = reader.readLine()) != null) {
+//                    builder.append(line);
+//                }
+//                JSONObject object = new JSONObject(builder.toString());
+//                JSONArray data = object.getJSONArray("data");
+//                for (int i = 0; i < data.length(); i++) {
+//                    videos.add(data.getJSONObject(i));
+//                }
+//            } catch (ClientProtocolException e) {
+//                e.printStackTrace();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
             return videos;
         }
 
