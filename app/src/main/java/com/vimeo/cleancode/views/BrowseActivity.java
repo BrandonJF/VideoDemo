@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.widget.ListView;
 
 import com.vimeo.cleancode.R;
@@ -22,17 +23,22 @@ public class BrowseActivity extends AppCompatActivity {
     private VideoAdapter mAdapter;
     private ArrayList<JSONObject> items = new ArrayList<>();
     private ActivityBrowseBinding mBinding;
+    private BrowseViewModel mBrowseViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_browse);
-        setupModel();
+        mBrowseViewModel = new BrowseViewModel(VimeoAPIService.getInstance());
+        mBinding.setBrowseModel(mBrowseViewModel);
+        setupAdapter();
     }
 
-    private void setupModel() {
-        VimeoAPIService vimeoAPIService = VimeoAPIService.getInstance();
-        mBinding.setBrowseModel(new BrowseViewModel(vimeoAPIService));
+
+    private void setupAdapter() {
+        mBinding.browseRvVideos.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        mBrowseViewModel.getData();
+        mBinding.browseRvVideos.setAdapter(mBrowseViewModel.getVideoAdapter());
     }
     private class StaffPicksAsyncTask extends AsyncTask<Void, Void, ArrayList<JSONObject>> {
 

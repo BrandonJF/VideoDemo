@@ -66,11 +66,11 @@ public abstract class BaseBindableAdapter<T, V extends BaseBindableAdapter.ViewH
         return mData.size();
     }
 
-    private void addItem(int i, T item) {
+    public void addItem(int i, T item) {
         mData.add(i, item);
     }
 
-    protected void addItems(List<T> itemList) {
+    public void addItems(List<T> itemList) {
         mData.addAll(itemList);
     }
 

@@ -9,7 +9,9 @@ import com.vimeo.cleancode.VideoAdapter;
 import com.vimeo.cleancode.models.ChannelVideosResponse;
 import com.vimeo.cleancode.models.Datum;
 import com.vimeo.cleancode.networking.VimeoAPIService;
+import com.vimeo.cleancode.views.adapters.VideoListAdapter;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,24 +26,27 @@ import rx.schedulers.Schedulers;
 public class BrowseViewModel extends BaseObservable {
     private final String TAG = this.getClass().getName();
     private VimeoAPIService mAPI;
-    private VideoAdapter mVideoAdapter;
+    private VideoListAdapter mVideoAdapter;
     private ObservableArrayList<VideoViewModel> mVideoViewModels = new ObservableArrayList<>();
 
     public BrowseViewModel(VimeoAPIService vimeoAPIService) {
         mAPI = vimeoAPIService;
         setupAdapter();
-        getData();
     }
 
     private void setupAdapter() {
-        mVideoAdapter = new VideoAdapter();
+        mVideoAdapter = new VideoListAdapter(mVideoViewModels);
     }
 
-    public VideoAdapter getVideoAdapter() {
+    private void addVideos(List<VideoViewModel> videos) {
+        mVideoAdapter.addItems(videos);
+    }
+
+    public VideoListAdapter getVideoAdapter() {
         return mVideoAdapter;
     }
 
-    private void getData() {
+    public void getData() {
         rx.Observable<ChannelVideosResponse> mChannelObservable = mAPI.getStaffPicks()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -65,11 +70,11 @@ public class BrowseViewModel extends BaseObservable {
     }
 
     private void addVideoViewModels(List<Datum> videoModels) {
-        Collection<VideoViewModel> viewModelCollection = null;
+        List<VideoViewModel> viewModelCollection = new ArrayList<>();
         for (Datum video : videoModels) {
             viewModelCollection.add(new VideoViewModel(video));
         }
-        mVideoViewModels.addAll(viewModelCollection);
+        addVideos(viewModelCollection);
     }
 
 

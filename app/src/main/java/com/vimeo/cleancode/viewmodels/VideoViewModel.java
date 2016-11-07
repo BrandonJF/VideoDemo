@@ -14,4 +14,8 @@ public class VideoViewModel extends BaseObservable {
     public VideoViewModel(Datum videoModel) {
         this.mModel = videoModel;
     }
+
+    public String getName() {
+        return mModel.getName();
+    }
 }
