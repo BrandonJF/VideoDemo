@@ -18,4 +18,8 @@ public class VideoViewModel extends BaseObservable {
     public String getName() {
         return mModel.getName();
     }
+
+    public String getPictureURI() {
+        return mModel.getPictures().getSizes().get(0).getLink();
+    }
 }

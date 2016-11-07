@@ -2,6 +2,8 @@ package com.vimeo.cleancode;
 
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -25,6 +27,7 @@ public class CleanApp extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        Fresco.initialize(this);
         setupRetrofit();
     }
 

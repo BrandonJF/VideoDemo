@@ -43,7 +43,7 @@ public class VideoAdapter extends ArrayAdapter<JSONObject> {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.list_item_video, null);
         }
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.video_thumbnail);
+        ImageView imageView = new ImageView(this.getContext());
         TextView nameTextView = (TextView) convertView.findViewById(R.id.list_item_video_name_textview);
         String uri = null;
         try {
