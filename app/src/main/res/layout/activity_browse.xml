@@ -1,3 +1,10 @@
+<layout>
+<data>
+    <variable
+        name="browseModel"
+        type="com.vimeo.cleancode.viewmodels.BrowseViewModel"/>
+</data>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
@@ -21,3 +28,4 @@
         android:layout_height="match_parent"/>
 
 </RelativeLayout>
+</layout>

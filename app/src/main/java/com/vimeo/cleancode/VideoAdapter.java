@@ -1,4 +1,4 @@
-package android.example.com.boguscode;
+package com.vimeo.cleancode;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.vimeo.boguscode.R;
+import com.vimeo.cleancode.R;
 
 import org.json.JSONObject;
 

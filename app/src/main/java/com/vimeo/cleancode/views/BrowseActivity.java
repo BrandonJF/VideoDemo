@@ -1,18 +1,18 @@
 package com.vimeo.cleancode.views;
 
-import android.example.com.boguscode.VideoAdapter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
-import com.vimeo.boguscode.R;
+import com.vimeo.cleancode.R;
+import com.vimeo.cleancode.VideoAdapter;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class BrowseActivity extends AppCompatActivity {
 
     private ListView mListView;
     private VideoAdapter mAdapter;
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_browse);
         mListView = (ListView) findViewById(R.id.activity_main_listview);
         mAdapter = new VideoAdapter(this, R.id.list_item_video_name_textview, items);
         mListView.setAdapter(mAdapter);
