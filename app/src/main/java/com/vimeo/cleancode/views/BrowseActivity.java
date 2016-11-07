@@ -51,4 +51,12 @@ public class BrowseActivity extends AppCompatActivity {
         // Adds the scroll listener to RecyclerView
         mBinding.browseRvVideos.addOnScrollListener(scrollListener);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mBrowseViewModel = null;
+        mBinding.setBrowseModel(null);
+        mBinding.executePendingBindings();
+    }
 }

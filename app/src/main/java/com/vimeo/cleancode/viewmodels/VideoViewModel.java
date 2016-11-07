@@ -1,6 +1,7 @@
 package com.vimeo.cleancode.viewmodels;
 
 import android.databinding.BaseObservable;
+import android.util.Log;
 
 import com.vimeo.cleancode.models.Datum;
 
@@ -21,5 +22,9 @@ public class VideoViewModel extends BaseObservable {
 
     public String getPictureURI() {
         return mModel.getPictures().getSizes().get(0).getLink();
+    }
+
+    public void onVideoClick() {
+        Log.d("DAMN", "got a click!");
     }
 }
