@@ -1,5 +1,6 @@
 package com.vimeo.cleancode.views;
 
+import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,9 @@ import android.widget.ListView;
 
 import com.vimeo.cleancode.R;
 import com.vimeo.cleancode.VideoAdapter;
+import com.vimeo.cleancode.databinding.ActivityBrowseBinding;
+import com.vimeo.cleancode.networking.VimeoAPIService;
+import com.vimeo.cleancode.viewmodels.BrowseViewModel;
 
 import org.json.JSONObject;
 
@@ -17,17 +21,19 @@ public class BrowseActivity extends AppCompatActivity {
     private ListView mListView;
     private VideoAdapter mAdapter;
     private ArrayList<JSONObject> items = new ArrayList<>();
+    private ActivityBrowseBinding mBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_browse);
-        mListView = (ListView) findViewById(R.id.activity_main_listview);
-        mAdapter = new VideoAdapter(this, R.id.list_item_video_name_textview, items);
-        mListView.setAdapter(mAdapter);
-        new StaffPicksAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_browse);
+        setupModel();
     }
 
+    private void setupModel() {
+        VimeoAPIService vimeoAPIService = VimeoAPIService.getInstance();
+        mBinding.setBrowseModel(new BrowseViewModel(vimeoAPIService));
+    }
     private class StaffPicksAsyncTask extends AsyncTask<Void, Void, ArrayList<JSONObject>> {
 
         @Override

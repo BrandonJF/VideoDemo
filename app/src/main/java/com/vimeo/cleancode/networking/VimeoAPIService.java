@@ -11,12 +11,24 @@ import rx.Observable;
 
 public class VimeoAPIService {
 
+    private static VimeoAPIService mInstance;
+
     private VimeoAPI mAPI;
     private boolean isRequestingVideos;
+
 
     public VimeoAPIService() {
         this.mAPI = CleanApp.getInstance().getRetrofit().create(VimeoAPI.class);
     }
+
+    public static synchronized VimeoAPIService getInstance() {
+        if (mInstance == null) {
+            mInstance = new VimeoAPIService();
+        }
+        return mInstance;
+    }
+
+
 
     public Observable<ChannelVideosResponse> getStaffPicks() {
         return mAPI.getChannelVideos("staffpicks")
