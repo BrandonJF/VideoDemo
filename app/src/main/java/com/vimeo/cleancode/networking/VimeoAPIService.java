@@ -30,8 +30,8 @@ public class VimeoAPIService {
 
 
 
-    public Observable<ChannelVideosResponse> getStaffPicks() {
-        return mAPI.getChannelVideos("staffpicks")
+    public Observable<ChannelVideosResponse> getStaffPicks(int page) {
+        return mAPI.getChannelVideos("staffpicks", page)
                 .doOnSubscribe(() -> isRequestingVideos = true)
                 .doOnTerminate(() -> isRequestingVideos = false)
                 .doOnError(this::handleVideoAPIError);

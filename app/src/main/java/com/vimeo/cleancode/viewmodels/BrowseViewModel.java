@@ -3,6 +3,7 @@ package com.vimeo.cleancode.viewmodels;
 import android.databinding.BaseObservable;
 import android.databinding.Observable;
 import android.databinding.ObservableArrayList;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.vimeo.cleancode.VideoAdapter;
@@ -29,6 +30,7 @@ public class BrowseViewModel extends BaseObservable {
     private VideoListAdapter mVideoAdapter;
     private ObservableArrayList<VideoViewModel> mVideoViewModels = new ObservableArrayList<>();
 
+
     public BrowseViewModel(VimeoAPIService vimeoAPIService) {
         mAPI = vimeoAPIService;
         setupAdapter();
@@ -47,7 +49,11 @@ public class BrowseViewModel extends BaseObservable {
     }
 
     public void getData() {
-        rx.Observable<ChannelVideosResponse> mChannelObservable = mAPI.getStaffPicks()
+        getDataAtPage(1);
+    }
+
+    public void getDataAtPage(int page) {
+        rx.Observable<ChannelVideosResponse> mChannelObservable = mAPI.getStaffPicks(page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
 
