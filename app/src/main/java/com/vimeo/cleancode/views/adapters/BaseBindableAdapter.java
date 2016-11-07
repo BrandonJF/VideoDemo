@@ -54,13 +54,6 @@ public abstract class BaseBindableAdapter<T, V extends BaseBindableAdapter.ViewH
         mData.addOnListChangedCallback(new WeakOnListChangedCallback(onListChangedCallback));
     }
 
-
-    protected void setAnimation(View view) {
-        AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
-        anim.setDuration(500);
-        view.startAnimation(anim);
-    }
-
     @Override
     public int getItemCount() {
         return mData.size();

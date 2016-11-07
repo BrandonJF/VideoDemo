@@ -23,6 +23,7 @@ public class VideoListAdapter extends BaseBindableAdapter<VideoViewModel, VideoL
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         ListItemVideoBinding binding = ListItemVideoBinding.inflate(inflater, parent, false);
+        binding.executePendingBindings();
         return new VideoListAdapter.ViewHolder(binding);
     }
 
@@ -30,7 +31,6 @@ public class VideoListAdapter extends BaseBindableAdapter<VideoViewModel, VideoL
     public void onBindViewHolder(VideoListAdapter.ViewHolder holder, int position) {
         ListItemVideoBinding binding = holder.getBinding();
         binding.setVideo(getData().get(position));
-        setAnimation(binding.getRoot());
     }
 
     public static class ViewHolder extends BaseBindableAdapter.ViewHolder {
