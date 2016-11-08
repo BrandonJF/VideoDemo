@@ -19,8 +19,8 @@
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/my_image_view"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/list_item_photo_size"
+            android:layout_height="@dimen/list_item_photo_size"
             android:src="@{video.pictureURI}"
             />
 
@@ -30,8 +30,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="@{video.name}"
-            android:layout_marginLeft="15dp"
-            android:layout_marginStart="15dp"
-            android:textSize="16sp"/>
+            android:layout_marginLeft="@dimen/textview_padding"
+            android:layout_marginStart="@dimen/textview_padding"
+            android:layout_marginRight="@dimen/textview_padding"
+            android:layout_marginEnd="@dimen/textview_padding"
+            android:textSize="@dimen/list_item_text_size"/>
     </LinearLayout>
 </layout>
