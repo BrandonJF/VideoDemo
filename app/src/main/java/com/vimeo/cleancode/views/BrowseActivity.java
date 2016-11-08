@@ -10,10 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.vimeo.cleancode.CleanApp;
 import com.vimeo.cleancode.R;
 import com.vimeo.cleancode.databinding.ActivityBrowseBinding;
-import com.vimeo.cleancode.events.LoadingEvent;
 import com.vimeo.cleancode.interfaces.HandlerInterface;
 import com.vimeo.cleancode.networking.VimeoAPIService;
 import com.vimeo.cleancode.util.EndlessRecyclerViewScrollListener;
