@@ -1,11 +1,8 @@
 package com.vimeo.cleancode.views.adapters;
 
-import android.databinding.DataBindingUtil;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.vimeo.cleancode.databinding.ListItemVideoBinding;
 import com.vimeo.cleancode.interfaces.HandlerInterface;

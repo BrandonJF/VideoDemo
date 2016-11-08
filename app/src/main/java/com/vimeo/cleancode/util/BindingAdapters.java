@@ -1,7 +1,6 @@
 package com.vimeo.cleancode.util;
 
 import android.databinding.BindingAdapter;
-import android.widget.ImageView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 

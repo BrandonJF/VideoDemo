@@ -1,12 +1,9 @@
 package com.vimeo.cleancode.viewmodels;
 
 import android.databinding.BaseObservable;
-import android.databinding.Observable;
 import android.databinding.ObservableArrayList;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.vimeo.cleancode.VideoAdapter;
 import com.vimeo.cleancode.interfaces.HandlerInterface;
 import com.vimeo.cleancode.models.ChannelVideosResponse;
 import com.vimeo.cleancode.models.Datum;
@@ -14,7 +11,6 @@ import com.vimeo.cleancode.networking.VimeoAPIService;
 import com.vimeo.cleancode.views.adapters.VideoListAdapter;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import rx.Observer;
@@ -60,11 +56,13 @@ public class BrowseViewModel extends BaseObservable implements HandlerInterface{
         rx.Observable<ChannelVideosResponse> mChannelObservable = mAPI.getStaffPicks(page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
+        mViewHandler.toggleLoadingState(true);
 
         mChannelObservable.subscribe(new Observer<ChannelVideosResponse>() {
             @Override
             public void onCompleted() {
                 Log.d(TAG,"Finished loading the channel data.");
+                mViewHandler.toggleLoadingState(false);
             }
 
             @Override

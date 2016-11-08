@@ -6,7 +6,9 @@ package com.vimeo.cleancode.interfaces;
 
 public interface HandlerInterface {
     void onVideoClickListener(int position);
+
     interface View {
         void displayToast(String message);
+        void toggleLoadingState(boolean isLoading);
     }
 }

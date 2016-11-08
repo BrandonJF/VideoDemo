@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">BogusCode</string>
     <string name="activity_main_title">Vimeo Staff Pics</string>
+    <string name="browse_sub_heading">All the videos have been hand picked by our staff!</string>
 
 </resources>

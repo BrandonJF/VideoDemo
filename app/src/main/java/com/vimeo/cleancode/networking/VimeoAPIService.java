@@ -1,6 +1,7 @@
 package com.vimeo.cleancode.networking;
 
 import com.vimeo.cleancode.CleanApp;
+import com.vimeo.cleancode.events.LoadingEvent;
 import com.vimeo.cleancode.models.ChannelVideosResponse;
 
 import rx.Observable;
@@ -17,7 +18,7 @@ public class VimeoAPIService {
     private boolean isRequestingVideos;
 
 
-    public VimeoAPIService() {
+    private VimeoAPIService() {
         this.mAPI = CleanApp.getInstance().getRetrofit().create(VimeoAPI.class);
     }
 
@@ -32,9 +33,13 @@ public class VimeoAPIService {
 
     public Observable<ChannelVideosResponse> getStaffPicks(int page) {
         return mAPI.getChannelVideos("staffpicks", page)
-                .doOnSubscribe(() -> isRequestingVideos = true)
-                .doOnTerminate(() -> isRequestingVideos = false)
+                .doOnSubscribe(() -> setRequestState(true))
+                .doOnTerminate(() -> setRequestState(false))
                 .doOnError(this::handleVideoAPIError);
+    }
+
+    private void setRequestState(boolean isRequesting) {
+        isRequestingVideos = isRequesting;
     }
 
     private void handleVideoAPIError(Throwable throwable) {
