@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.vimeo.cleancode.VideoAdapter;
+import com.vimeo.cleancode.interfaces.HandlerInterface;
 import com.vimeo.cleancode.models.ChannelVideosResponse;
 import com.vimeo.cleancode.models.Datum;
 import com.vimeo.cleancode.networking.VimeoAPIService;
@@ -24,20 +25,23 @@ import rx.schedulers.Schedulers;
  * Created by Brandon on 11/6/16.
  */
 
-public class BrowseViewModel extends BaseObservable {
+public class BrowseViewModel extends BaseObservable implements HandlerInterface{
     private final String TAG = this.getClass().getName();
     private VimeoAPIService mAPI;
     private VideoListAdapter mVideoAdapter;
     private ObservableArrayList<VideoViewModel> mVideoViewModels = new ObservableArrayList<>();
+    private HandlerInterface.View mViewHandler;
 
 
-    public BrowseViewModel(VimeoAPIService vimeoAPIService) {
+
+    public BrowseViewModel(VimeoAPIService vimeoAPIService, HandlerInterface.View viewHandler) {
+        mViewHandler = viewHandler;
         mAPI = vimeoAPIService;
         setupAdapter();
     }
 
     private void setupAdapter() {
-        mVideoAdapter = new VideoListAdapter(mVideoViewModels);
+        mVideoAdapter = new VideoListAdapter(mVideoViewModels, this);
     }
 
     private void addVideos(List<VideoViewModel> videos) {
@@ -84,6 +88,8 @@ public class BrowseViewModel extends BaseObservable {
     }
 
 
-
-
+    @Override
+    public void onVideoClickListener(int position) {
+        mViewHandler.displayToast("Item number " + String.valueOf(position) + " has been selected");
+    }
 }

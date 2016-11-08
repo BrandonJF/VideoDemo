@@ -2,14 +2,11 @@ package com.vimeo.cleancode.views.adapters;
 
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 
 import com.vimeo.cleancode.util.WeakOnListChangedCallback;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
